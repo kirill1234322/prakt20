@@ -1,0 +1,36 @@
+﻿<Window x:Class="laba20v3.nomen1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:laba20v3"
+        mc:Ignorable="d"
+        Title="nomen1" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" Content="Добавить" Command="{Binding AddCommandNomen}" Height="50" Width="150"/>
+        <DataGrid Grid.ColumnSpan="4" Grid.Row="1" ItemsSource="{Binding nomlist}" Name="datagridnom"  AutoGenerateColumns="False" CanUserAddRows="False"  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn MinWidth = "150" Header = "ID"  Binding = "{Binding Path= ID}" />
+                <DataGridTextColumn MinWidth = "150" Header = "Наименование" Binding = "{Binding Path=Name}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <Button Content="Удалить" Click="RemoveItem"/>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

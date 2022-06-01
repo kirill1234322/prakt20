@@ -1,0 +1,41 @@
+﻿<Window x:Class="laba20v3.postav1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:laba20v3"
+        mc:Ignorable="d"
+        Title="postav1" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" Content="Добавить" Command="{Binding AddCommandPostav}" Height="50" Width="150"/>
+        <Button Grid.Row="0" Grid.Column="1" Content="Изменить" Click="Update" Height="50" Width="150"/>
+        <!--<TextBox Grid.Column="3" x:Name="TextBoxSurname" TextChanged="TextBoxSurname_TextChanged" Height="20" Width="155" />
+        <Button Grid.Column="2" x:Name="Find" ToolTip="Поиск по фамилии"  Click="Find_Click" Height="50" Width="150" />-->
+
+        <DataGrid MouseDoubleClick="datagridpost_MouseDoubleClick"  Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{Binding postlist}"  Name="datagridpost"  AutoGenerateColumns="False" IsReadOnly="True" >
+            <DataGrid.Columns>
+                <DataGridTextColumn MinWidth = "150" Header = "ID"  Binding = "{Binding ID}" />
+                <DataGridTextColumn MinWidth = "150" Header = "Наименование" Binding = "{Binding Path=Name}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <Button Content="Удалить" Click="RemoveItem"/>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
